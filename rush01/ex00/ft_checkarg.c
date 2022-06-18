@@ -1,25 +1,30 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_checkarg.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tnard <tnard@student.42lyon.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/17 10:14:59 by tnard             #+#    #+#             */
-/*   Updated: 2021/07/22 09:28:49 by tnard            ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "rush01.h"
 
+/*
+If the number of number in the argument is the size * 4 and number is less than size and number is not zero then valid.
+*/
 int	ft_check_count(int count, int size, int number)
 {
 	if (count == size * 4 && number <= size && number >= 1)
-		return (1);
-	return (0);
+		return (0);
+	return (1);
 }
 
-int	ft_checkarg(char *str, int size)
+/*
+1. Check whether the first character is number or not
+2. If it is not a number, go to next character (but don't exit loop yet)
+3. If it is not a number or higher than the size (i.e. 4x4 table but number is > 4) or it is a negative number, return 0 (error)
+4. If the above condition checks out (number is valid), convert string to int (atoi()) and count how many numbers are in the string. Then return it to check
+
+12 34
+1. check if first character is a number or not. If it is, store in variable
+var = 1
+2. Check if the second character is a number or not. If it isn't, increase count by 1 (so we know that we can know how much number is in the argument)
+3. Check if the second character is a number or not. If it is, multiply stored var by 10 and add current number
+var = (1 * 10) + 2 = 12
+*/ 
+
+int	is_input_valid(char *str, int size)
 {
 	int	n;
 	int	count;

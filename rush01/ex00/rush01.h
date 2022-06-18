@@ -1,21 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rush01.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tnard <tnard@student.42lyon.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/17 09:47:21 by tnard             #+#    #+#             */
-/*   Updated: 2021/07/22 09:28:57 by tnard            ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef RUSH01_H
 # define RUSH01_H
 
 void	ft_putstr(char *str);
 void	ft_putchar(char c);
-int		ft_checkarg(char *str, int size);
+int		is_input_valid(char *str, int size);
 int		ft_getarg(char *str, int nb);
 int		ft_is_num(char c);
 int		**ft_init(int size, char *argv);

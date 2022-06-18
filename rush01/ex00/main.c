@@ -1,17 +1,41 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tnard <tnard@student.42lyon.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/17 09:31:21 by tnard             #+#    #+#             */
-/*   Updated: 2021/07/22 09:28:56 by tnard            ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "rush01.h"
 #include <stdlib.h>
+
+int	error(void);  // print error message and quit
+void	ft_destroy_tab(int **tab, int size);  // free memory allocated
+
+/*
+1. Declare variable size and 2D table.
+2. Assign size to 4 and table to null
+3. Check if user input correct amount of argument (2)
+4. Parse input and check whether it is valid or not
+
+*/
+
+int	main(int argc, char **argv)
+{
+	int	size;
+	int	**table;
+
+	table = NULL;
+	size = 4;
+	if (argc != 2)
+		return(error());
+	if (is_input_valid(argv[1], size))
+		return(error());
+	table = ft_init(size, argv[1]);
+	if (table != NULL)
+	{
+		ft_solve(table, 1, 1, size);
+		if (table[size][size] != 0)
+			ft_show(table, size);
+		else
+			return (error());
+		ft_destroy_tab(table, size);
+		return (0);
+	}
+	return (error());
+}
 
 int	error(void)
 {
@@ -25,29 +49,4 @@ void	ft_destroy_tab(int **tab, int size)
 		free(tab[size]);
 	free(tab);
 	return ;
-}
-
-int	main(int argc, char *argv[])
-{
-	int	size;
-	int	**tab;
-
-	tab = NULL;
-	size = 4;
-	if (argc != 2)
-		return (error());
-	if (!ft_checkarg(argv[1], size))
-		return (error());
-	tab = ft_init(size, argv[1]);
-	if (tab != NULL)
-	{
-		ft_solve(tab, 1, 1, size);
-		if (tab[size][size] != 0)
-			ft_show(tab, size);
-		else
-			return (error());
-		ft_destroy_tab(tab, size);
-		return (0);
-	}
-	return (error());
 }
